@@ -1,9 +1,10 @@
 from typing import List
+from pydantic import ConfigDict
 from pydantic_settings import BaseSettings
 
 class Settings(BaseSettings):
     # API configs
-    API_V1_STR: str = "/api/v0"
+    API_V0_STR: str = "/api/v0"
     APP_NAME: str = "Pycharm IA FastAPI Project"
     VERSION: str = "0.0.0"
     DESCRIPTION: str = "A REST API project using FastAPI into PyCharm with AI assistance."
@@ -19,8 +20,9 @@ class Settings(BaseSettings):
     # Add more settings as needed
     DEBUG: bool = False
 
-    class Config:
-        env_file = ".venv"
-        case_sensitive = True
+    model_config = ConfigDict(
+        env_file="../.venv",
+        case_sensitive=True
+    )
 
 settings = Settings()
